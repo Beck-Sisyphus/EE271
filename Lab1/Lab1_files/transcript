@@ -1,0 +1,16 @@
+# Reading C:/altera/14.0/modelsim_ase/tcl/vsim/pref.tcl 
+do runlab.do
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux2_1
+# -- Compiling module mux2_1_testbench
+# 
+# Top level modules:
+# 	mux2_1_testbench
+# vsim -lib work -voptargs=\"+acc\" -t 1ps mux2_1_testbench 
+# Loading sv_std.std
+# Loading work.mux2_1_testbench
+# Loading work.mux2_1
+# .main_pane.wave.interior.cs.body.pw.wf
+# .main_pane.structure.interior.cs.body.struct
+# .main_pane.objects.interior.cs.body.tree
+write format wave -window .main_pane.wave.interior.cs.body.pw.wf U:/EE271/Lab1/Lab1_files/wave.do

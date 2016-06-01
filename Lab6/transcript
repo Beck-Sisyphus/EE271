@@ -1,0 +1,63 @@
+# Reading C:/altera/14.0/modelsim_ase/tcl/vsim/pref.tcl 
+do runlab.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# 
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module DE1_SoC
+# -- Compiling module DE1_SoC_testbench
+# 
+# Top level modules:
+# 	DE1_SoC_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module playTugOfWar
+# -- Compiling module playTugOfWar_testbench
+# 
+# Top level modules:
+# 	playTugOfWar_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module victory
+# 
+# Top level modules:
+# 	victory
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module centerLight
+# -- Compiling module normalLight
+# 
+# Top level modules:
+# 	centerLight
+# 	normalLight
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module userInput
+# -- Compiling module button
+# -- Compiling module button_testbench
+# 
+# Top level modules:
+# 	userInput
+# 	button_testbench
+# vsim -lib work -voptargs=\"+acc\" -t 1ps DE1_SoC_testbench 
+# Loading sv_std.std
+# Loading work.DE1_SoC_testbench
+# Loading work.DE1_SoC
+# Loading work.userInput
+# Loading work.button
+# Loading work.playTugOfWar
+# Loading work.normalLight
+# Loading work.centerLight
+# Loading work.victory
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+# 
+#           File in use by: pshfls  Hostname: EE-365PC10  ProcessID: 6324
+# 
+#           Attempting to use alternate WLF file "./wlftjas0kv".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+# 
+#           Using alternate file: ./wlftjas0kv
+# 
+# ** Error: (vish-4014) No objects found matching '/DE1_SoC_testbench/CLOCK_50'.
+# Executing ONERROR command at macro ./DE1_SoC_wave.do line 3
+# .main_pane.wave.interior.cs.body.pw.wf
+# .main_pane.structure.interior.cs.body.struct
+# .main_pane.objects.interior.cs.body.tree
+# Break in Module DE1_SoC_testbench at ./DE1_SoC.sv line 97
+# Simulation Breakpoint: Break in Module DE1_SoC_testbench at ./DE1_SoC.sv line 97
+# MACRO ./runlab.do PAUSED at line 29

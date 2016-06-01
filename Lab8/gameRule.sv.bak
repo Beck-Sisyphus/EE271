@@ -1,0 +1,23 @@
+module gameRule (
+	input clk,    // Clock
+	input [7:0] neighbours; // alive or died of the neighbours around it.
+	output reg cells // alive or died for the cell
+);
+
+
+// Any live cell with fewer than two live neighbours dies, as if caused by under-population.
+// Any live cell with two or three live neighbours lives on to the next generation.
+// Any live cell with more than three live neighbours dies, as if by overcrowding.
+// Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
+
+	reg [2:0] count;
+	for (i = 0; i < 8; i++) begin	
+		if (neighbours[i])
+			count = count + 3'b001;
+		else 
+			count = count;
+	end
+
+	
+
+endmodule

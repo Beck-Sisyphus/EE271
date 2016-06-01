@@ -1,0 +1,108 @@
+# Reading C:/altera/14.0/modelsim_ase/tcl/vsim/pref.tcl 
+do runlab.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# 
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module DE1_SoC
+# -- Compiling module DE1_SoC_testbench
+# 
+# Top level modules:
+# 	DE1_SoC_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module ledMatrixDriver
+# -- Compiling module ledMatrixDriver_testbench
+# 
+# Top level modules:
+# 	ledMatrixDriver_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module playGame
+# -- Compiling module playGame_testbench
+# 
+# Top level modules:
+# 	playGame_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module gameRule
+# -- Compiling module gameRule_testbench
+# 
+# Top level modules:
+# 	gameRule_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module changeOneColor
+# -- Compiling module changeOneColor_testbench
+# 
+# Top level modules:
+# 	changeOneColor_testbench
+# vsim -lib work -voptargs=\"+acc\" -t 1ps gameRule_testbench 
+# Loading sv_std.std
+# Loading work.gameRule_testbench
+# Loading work.gameRule
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+# 
+#           File in use by: pshfls  Hostname: EE-365PC08  ProcessID: 7820
+# 
+#           Attempting to use alternate WLF file "./wlft6dxhfd".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+# 
+#           Using alternate file: ./wlft6dxhfd
+# 
+# ** Error: (vish-4014) No objects found matching '/gameRule_testbench/reset'.
+# Executing ONERROR command at macro ./gameRule_wave.do line 4
+# .main_pane.wave.interior.cs.body.pw.wf
+# .main_pane.structure.interior.cs.body.struct
+# .main_pane.objects.interior.cs.body.tree
+# Break in Module gameRule_testbench at ./gameRule.sv line 95
+# Simulation Breakpoint: Break in Module gameRule_testbench at ./gameRule.sv line 95
+# MACRO ./runlab.do PAUSED at line 36
+write format wave -window .main_pane.wave.interior.cs.body.pw.wf U:/EE271/Lab8/gameRule_wave.do
+do runlab.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# 
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module DE1_SoC
+# -- Compiling module DE1_SoC_testbench
+# 
+# Top level modules:
+# 	DE1_SoC_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module ledMatrixDriver
+# -- Compiling module ledMatrixDriver_testbench
+# 
+# Top level modules:
+# 	ledMatrixDriver_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module playGame
+# -- Compiling module playGame_testbench
+# 
+# Top level modules:
+# 	playGame_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module gameRule
+# -- Compiling module gameRule_testbench
+# 
+# Top level modules:
+# 	gameRule_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module changeOneColor
+# -- Compiling module changeOneColor_testbench
+# 
+# Top level modules:
+# 	changeOneColor_testbench
+# vsim -lib work -voptargs=\"+acc\" -t 1ps gameRule_testbench 
+# Loading sv_std.std
+# Loading work.gameRule_testbench
+# Loading work.gameRule
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+# 
+#           File in use by: pshfls  Hostname: EE-365PC08  ProcessID: 7820
+# 
+#           Attempting to use alternate WLF file "./wlftg7cfq5".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+# 
+#           Using alternate file: ./wlftg7cfq5
+# 
+# .main_pane.wave.interior.cs.body.pw.wf
+# .main_pane.structure.interior.cs.body.struct
+# .main_pane.objects.interior.cs.body.tree
+# Break in Module gameRule_testbench at ./gameRule.sv line 95
+# Simulation Breakpoint: Break in Module gameRule_testbench at ./gameRule.sv line 95
+# MACRO ./runlab.do PAUSED at line 36

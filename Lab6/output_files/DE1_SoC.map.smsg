@@ -1,0 +1,3 @@
+Info (10281): Verilog HDL Declaration information at victory.sv(12): object "one" differs only in case from object "ONE" in the same scope
+Info (10281): Verilog HDL Declaration information at victory.sv(12): object "two" differs only in case from object "TWO" in the same scope
+Warning (10034): Output port "LEDR[0]" at DE1_SoC.sv(7) has no driver

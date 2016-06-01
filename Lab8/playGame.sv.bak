@@ -1,0 +1,114 @@
+module playGame (
+	input CLOCK_50,    // Clock
+	input reset,  // Asynchronous reset active low
+	output reg [7:0][7:0] redArray, greenArray // 2D LED array as input
+);
+	// Generate clk off of CLOCK_50, whichClock picks rate.
+	reg    [31:0] clk;
+	parameter slowClock = 30;
+
+	reg [7:0][7:0] nextState;
+
+	// need to warp around the map so the diagram went out will come back to the screen from the other way.
+	gameRule cornerDownR(.CLOCK_50, .cells({{greenArray[1][1:0], 1'b0}, {greenArray[0][1:0], 1'b0}, {3'b0}}), .nextState(nextState[0][0]));
+	gameRule cornerDownL(.CLOCK_50, .cells({{1'b0, greenArray[1][7:6]}, {1'b0, greenArray[0][7:6]}, {3'b0}}), .nextState(nextState[0][7]));
+	gameRule cornerUpR  (.CLOCK_50, .cells({{3'b0}, {greenArray[7][1:0], 1'b0}, {greenArray[6][1:0], 1'b0}}), .nextState(nextState[7][0]));
+	gameRule cornerUpL  (.CLOCK_50, .cells({{3'b0}, {1'b0, greenArray[7][7:6]}, {1'b0, greenArray[6][7:6]}}), .nextState(nextState[7][7]));
+
+	genvar col, row, colMid, rowMid;
+
+	generate
+		for (col = 1; col < 7; col++) begin: buttonRowLoop
+			gameRule buttonRow(.CLOCK_50, .cells({3'b0, {greenArray[0][col+1 : col-1]}, {greenArray[1][col+1 : col-1]}}), .nextState(nextState[0][col]));
+		end
+
+		for (col = 1; col < 7; col++) begin: topRowLoop
+			gameRule topRow   (.CLOCK_50, .cells({{greenArray[6][col+1 : col-1]}, {greenArray[7][col+1 : col-1]}, 3'b0}), .nextState(nextState[7][col]));
+		end
+
+		for (row = 1; row < 7; row++) begin: rightColumnLoop   
+			gameRule rightColumn(.CLOCK_50, .cells({{greenArray[row+1][1:0], 1'b0}, {greenArray[row][1:0], 1'b0}, {greenArray[row-1][1:0], 1'b0}}), .nextState(nextState[row][0]));
+		end
+
+		for (row = 1; row < 7; row++) begin: leftColumnLoop
+			gameRule leftColumn(.CLOCK_50, .cells({{1'b0, greenArray[row+1][7:6]}, {1'b0, greenArray[row][7:6]}, {1'b0, greenArray[row-1][7:6]}}), .nextState(nextState[row][7]));
+		end
+	endgenerate
+
+
+	generate
+		for (colMid = 1; colMid < 7; colMid++) begin: midColumnLoop
+			for (rowMid = 1; rowMid < 7; rowMid++) begin: midRowLoop
+				gameRule buttonRow(.CLOCK_50, .cells({greenArray[rowMid+1][colMid+1:colMid-1], greenArray[rowMid][colMid+1:colMid-1], greenArray[rowMid-1][colMid+1:colMid-1]}), .nextState(nextState[rowMid][colMid]));
+			end
+		end
+	endgenerate
+
+	always @(posedge CLOCK_50)
+		if (reset) begin
+			clk <= 32'b0;
+			greenArray <= {
+						{8'b00001100},
+						{8'b00001100},
+						{8'b01100000},
+						{8'b01100000},
+						{8'b00000100},
+						{8'b00000100},
+						{8'b11100100},
+						{8'b00000000}
+						};
+			redArray   <= {
+						{8'b0}, 
+						{8'b0},
+						{~8'b0},
+						{8'b0},
+						{8'b0},
+						{8'b0},
+						{8'b0},
+						{8'b0}
+						};			
+		end
+		else if (clk[slowClock] == 1'b1) begin
+			greenArray <= nextState;
+			clk <= clk + 1'b1;
+		end 
+		else begin
+			greenArray <= greenArray;
+			clk <= clk + 1'b1;
+		end
+
+endmodule
+
+module playGame_testbench();
+	reg	  CLOCK_50;    // Clock
+	reg	  reset;  // Asynchronous reset active low
+	wire  [7:0][7:0] redArray, greenArray;	
+
+	// When testing, change the slowClock to 6; in normal use, change back to 30.
+	// Set up the clock
+	parameter CLOCK_PERIOD = 100;
+	initial CLOCK_50 = 1;
+	always begin
+		#(CLOCK_PERIOD / 2);
+		CLOCK_50 = ~CLOCK_50;
+	end 
+
+	playGame game (.CLOCK_50, .reset, .redArray, .greenArray);
+
+	integer i;
+	initial begin	
+						      	@(posedge CLOCK_50);
+		reset <= 1;		      	@(posedge CLOCK_50);
+		reset <= 0;		      	@(posedge CLOCK_50);
+						      	@(posedge CLOCK_50);
+								@(posedge CLOCK_50);
+						      	@(posedge CLOCK_50);
+						      	@(posedge CLOCK_50);
+						      	@(posedge CLOCK_50);
+						      	@(posedge CLOCK_50);
+		for (i = 0; i < 160; i++) begin
+								@(posedge CLOCK_50);
+		end
+						      	$stop;
+	end
+endmodule

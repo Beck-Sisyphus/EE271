@@ -1,0 +1,26 @@
+module ledMatrixDriver (
+	input clk,    // Clock
+	input [7:0][7:0] red array, green array, // 2D LED array as input
+	output reg [7:0] red driver, green driver, row sink
+);
+	reg [2:0] count;
+
+	always @(posedge clk)
+		count <= count + 3'b001;
+
+	always @(*)
+		case (count)
+			3'b000:	  row sink = 8'b11111110;
+			3'b001:   row sink = 8'b11111101;
+			3'b010:   row sink = 8'b11111011;
+			3'b011:   row sink = 8'b11110111;
+			3'b100:   row sink = 8'b11101111;
+			3'b101:   row sink = 8'b11011111;
+			3'b110:   row sink = 8'b10111111;
+			3'b111:   row sink = 8'b01111111;
+			default : row sink = 8'b11111111;
+		endcase
+
+	assign red driver = red	array[count];
+	assign green driver = green array[count];
+endmodule

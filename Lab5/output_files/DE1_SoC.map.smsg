@@ -1,0 +1,7 @@
+Warning (10034): Output port "HEX0" at DE1_SoC.sv(6) has no driver
+Warning (10034): Output port "HEX1" at DE1_SoC.sv(6) has no driver
+Warning (10034): Output port "HEX2" at DE1_SoC.sv(6) has no driver
+Warning (10034): Output port "HEX3" at DE1_SoC.sv(6) has no driver
+Warning (10034): Output port "HEX4" at DE1_SoC.sv(6) has no driver
+Warning (10034): Output port "HEX5" at DE1_SoC.sv(6) has no driver
+Warning (10034): Output port "LEDR[9..3]" at DE1_SoC.sv(7) has no driver

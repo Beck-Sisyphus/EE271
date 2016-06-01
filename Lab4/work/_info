@@ -1,0 +1,183 @@
+m255
+K3
+13
+cModel Technology
+Z0 dU:\EE271\Lab1\Lab1_files
+vDE1_SoC
+Z1 DXx6 sv_std 3 std 0 22 F[19LRNL:5;XmIFh[XOPn1
+Z2 !s100 4mn_c`2RSCLB5K2YZS[NA3
+Z3 IA[WU:7`m^?IGblf8`gW@63
+Z4 VhOmPm;FlUXk3D7UUAKiLD1
+Z5 !s105 DE1_SoC_sv_unit
+S1
+Z6 dU:\EE271\Lab4
+Z7 w1422564452
+Z8 8./DE1_SoC.sv
+Z9 F./DE1_SoC.sv
+L0 4
+Z10 OV;L;10.1e;51
+r1
+31
+Z11 !s108 1423165189.522000
+Z12 !s107 ./DE1_SoC.sv|
+Z13 !s90 -reportprogress|300|./DE1_SoC.sv|
+o-O0
+Z14 n@d@e1_@so@c
+!i10b 1
+!s85 0
+!s101 -O0
+vDE1_SoC_testbench
+R1
+Z15 !s100 ThkTUm_E;`Bnd?kYVM0mQ2
+Z16 IQ2NQbPJJcDW8BMZ7W<l@T3
+Z17 V0JQR1@XTkC<M<>j8_4C8B1
+R5
+S1
+R6
+R7
+R8
+R9
+L0 23
+R10
+r1
+31
+R11
+R12
+R13
+o-O0
+Z18 n@d@e1_@so@c_testbench
+!i10b 1
+!s85 0
+!s101 -O0
+vmux2_1
+R1
+Z19 !s100 JZMz9_671lLG]b9QU_9SO3
+Z20 I=CT[n[ah3LK13K=C9eM0W1
+Z21 VDaJbi4TKY[OoJJIdmR=?E3
+Z22 !s105 mux2_1_sv_unit
+S1
+R6
+Z23 w1420848740
+Z24 8./mux2_1.sv
+Z25 F./mux2_1.sv
+L0 1
+R10
+r1
+31
+Z26 !s108 1422651187.683000
+Z27 !s107 ./mux2_1.sv|
+Z28 !s90 -reportprogress|300|./mux2_1.sv|
+o-O0
+!i10b 1
+!s85 0
+!s101 -O0
+vmux2_1_testbench
+R1
+Z29 !s100 b[:a5K>k0ZREEXli@;2oD1
+Z30 I:ZP2K9C9@7bD[FBm4U8lW0
+Z31 Veb]=`Kc4=P>olk?Tl<c;03
+R22
+S1
+R6
+R23
+R24
+R25
+L0 8
+R10
+r1
+31
+R26
+R27
+R28
+o-O0
+!i10b 1
+!s85 0
+!s101 -O0
+vmux4_1
+R1
+Z32 !s100 S^9IUGOKbBEiJ5bhB=j713
+Z33 I<PE]CPY:Yc6o5?I>n>bmM0
+Z34 VJEUo1i2RzJ5S2QjbAZkQJ2
+Z35 !s105 mux4_1_sv_unit
+S1
+R6
+Z36 w1421092814
+Z37 8./mux4_1.sv
+Z38 F./mux4_1.sv
+L0 1
+R10
+r1
+31
+Z39 !s108 1422651188.862000
+Z40 !s107 ./mux4_1.sv|
+Z41 !s90 -reportprogress|300|./mux4_1.sv|
+o-O0
+!i10b 1
+!s85 0
+!s101 -O0
+vmux4_1_testbench
+R1
+Z42 !s100 N?Wg>IF@z_BMEm^AZlm5Q1
+Z43 IiQ294CL3XCIf>2AiTgL_71
+Z44 VF1`Z8diZTzG1W]GXVUalU1
+R35
+S1
+R6
+R36
+R37
+R38
+L0 12
+R10
+r1
+31
+R39
+R40
+R41
+o-O0
+!i10b 1
+!s85 0
+!s101 -O0
+vseg7
+R1
+!i10b 1
+Z45 !s100 8:6jEJWP2X4c0OOI9d27j3
+Z46 IZSfRz=F<ZD4S0VzN^N;1Z3
+Z47 V=]PHLNWzRn<1Ca8Z^FQe10
+Z48 !s105 seg7_sv_unit
+S1
+R6
+Z49 w1423163256
+Z50 8./seg7.sv
+Z51 F./seg7.sv
+L0 4
+R10
+r1
+!s85 0
+31
+Z52 !s108 1423165191.003000
+Z53 !s107 ./seg7.sv|
+Z54 !s90 -reportprogress|300|./seg7.sv|
+!s101 -O0
+o-O0
+vseg7_testbench
+R1
+!i10b 1
+Z55 !s100 WB2E>mF3XikHdkc=Nd:;13
+Z56 I61:2eQM@kJ4FZ3g2_FJT01
+Z57 VQ4fKBBKH:IHZL_JzbSZ:50
+R48
+S1
+R6
+R49
+R50
+R51
+L0 93
+R10
+r1
+!s85 0
+31
+R52
+R53
+R54
+!s101 -O0
+o-O0

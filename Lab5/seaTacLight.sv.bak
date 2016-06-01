@@ -1,0 +1,81 @@
+module seaTacLight (clk, SW, LEDR);
+    input            clk;
+    input      [1:0] SW;
+    output reg [2:0] LEDR;
+
+    reg [2:0] ps;   // two present states bits, four states
+    reg [2:0] ns;
+
+    // States and Output encoding
+    parameter [2:0] calm = 3'b101, nil = 3'bxxx,
+                    R = 3'b001, M = 3'b010, L = 3'b100;
+
+    // Next State logic
+    always @(*)
+        case (ps)
+            calm:   if (~SW[0] & ~SW[1])      ns = ~calm; // 00
+                    else if (~SW[0] & SW[1])  ns = R;     // 01 
+                    else if (SW[0] & ~SW[1])  ns = L;     // 10
+                    else                      ns = nil;
+            ~calm:  if (~SW[0] & ~SW[1])      ns = calm;  
+                    else if (~SW[0] & SW[1])  ns = R;     
+                    else if (SW[0] & ~SW[1])  ns = L;
+                    else                      ns = nil;
+            R:      if (~SW[0] & ~SW[1])      ns = calm;  
+                    else if (~SW[0] & SW[1])  ns = M;     // 01 again, to M
+                    else if (SW[0] & ~SW[1])  ns = L;
+                    else                      ns = nil;
+            M:      if (~SW[0] & ~SW[1])      ns = calm;  
+                    else if (~SW[0] & SW[1])  ns = L;     
+                    else if (SW[0] & ~SW[1])  ns = R;
+                    else                      ns = nil;
+            L:      if (~SW[0] & ~SW[1])      ns = calm;  
+                    else if (~SW[0] & SW[1])  ns = R;     
+                    else if (SW[0] & ~SW[1])  ns = M;     // 10 again, to M
+                    else                      ns = nil;
+            default:    ns = nil;
+        endcase
+
+    // Output logic
+    assign LEDR = ns;
+
+    // DFFs
+    always @(posedge clk)
+        ps <= ns;
+
+endmodule
+
+module seaTacLight_testbench();
+	reg 		  clk;
+	reg  [1:0] SW;
+	wire [2:0] LEDR;
+	
+	seaTacLight dut (clk, SW, LEDR);
+	
+	// Set up the clock
+	parameter CLOCK_PERIOD = 100;
+	initial clk = 1;
+	always begin
+		#(CLOCK_PERIOD / 2);
+		clk = ~clk;
+	end 
+	
+	// Set up the inputs to the design. Each line is a clock cycle.
+	initial begin	
+									      @(posedge clk);
+		SW[0] <= 0; SW[1] <= 0;    @(posedge clk);
+		                           @(posedge clk);
+											@(posedge clk);
+											@(posedge clk);
+											@(posedge clk);
+											@(posedge clk);
+											@(posedge clk);
+											@(posedge clk);
+											@(posedge clk);
+											@(posedge clk);
+											@(posedge clk);
+											@(posedge clk);
+											@(posedge clk);
+		$stop;
+	end
+endmodule

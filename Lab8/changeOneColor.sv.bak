@@ -1,0 +1,85 @@
+// Beck Pang
+// This module handles updating 64 lights on LED array for a single color
+// no sequential circuit build in.
+module changeOneColor (
+	input CLOCK_50,    // Clock
+	input reset,  	   // Asynchronous reset active low
+	input [7:0][7:0] array, // 2D LED array as input
+	output [7:0][7:0]nextState
+);
+	// need to warp around the map so the diagram went out will come back to the screen from the other way.
+	gameRule cornerDownR(.CLOCK_50, .reset, .cells({array[1][1:0], 1'b0, array[0][1:0], 1'b0, 3'b0}), .out(nextState[0][0]));
+	gameRule cornerDownL(.CLOCK_50, .reset, .cells({1'b0, array[1][7:6], 1'b0, array[0][7:6], 3'b0}), .out(nextState[0][7]));
+	gameRule cornerUpR  (.CLOCK_50, .reset, .cells({3'b0, array[7][1:0], 1'b0, array[6][1:0], 1'b0}), .out(nextState[7][0]));
+	gameRule cornerUpL  (.CLOCK_50, .reset, .cells({3'b0, 1'b0, array[7][7:6], 1'b0, array[6][7:6]}), .out(nextState[7][7]));
+
+	genvar col, row, colMid, rowMid;
+
+	generate
+		for (col = 1; col < 7; col++) begin: buttonRowLoop
+			gameRule buttonRow(.CLOCK_50, .reset, .cells({3'b0, array[0][col+1 : col-1], array[1][col+1 : col-1]}), .out(nextState[0][col]));
+		end
+
+		for (col = 1; col < 7; col++) begin: topRowLoop
+			gameRule topRow   (.CLOCK_50, .reset, .cells({array[6][col+1 : col-1], array[7][col+1 : col-1], 3'b0}), .out(nextState[7][col]));
+		end
+
+		for (row = 1; row < 7; row++) begin: rightColumnLoop   
+			gameRule rightColumn(.CLOCK_50, .reset, .cells({array[row+1][1:0], 1'b0, array[row][1:0], 1'b0, array[row-1][1:0], 1'b0}), .out(nextState[row][0]));
+		end
+
+		for (row = 1; row < 7; row++) begin: leftColumnLoop
+			gameRule leftColumn(.CLOCK_50, .reset, .cells({1'b0, array[row+1][7:6], 1'b0, array[row][7:6], 1'b0, array[row-1][7:6]}), .out(nextState[row][7]));
+		end
+	endgenerate
+
+	generate
+		for (colMid = 1; colMid < 7; colMid++) begin: midColumnLoop
+			for (rowMid = 1; rowMid < 7; rowMid++) begin: midRowLoop
+				gameRule buttonRow(.CLOCK_50,  .reset,
+					.cells({array[rowMid+1][colMid+1:colMid-1], 
+				 			array[rowMid  ][colMid+1:colMid-1], 
+				 			array[rowMid-1][colMid+1:colMid-1]}), 
+					.out(nextState[rowMid][colMid]));
+			end
+		end
+	endgenerate
+endmodule
+
+module changeOneColor_testbench ();
+	reg	  CLOCK_50;    // Clock
+	reg	  reset;  // Asynchronous reset active low
+	reg   [7:0][7:0] array;
+	wire  [7:0][7:0] nextState;
+
+	// When testing, change the slowClock to 6; in normal use, change back to 30.
+	// Set up the clock
+	parameter CLOCK_PERIOD = 100;
+	initial CLOCK_50 = 1;
+	always begin
+		#(CLOCK_PERIOD / 2);
+		CLOCK_50 = ~CLOCK_50;
+	end 
+
+	changeOneColor update (.CLOCK_50, .reset, .array, .nextState);
+
+	integer i;
+	initial begin	
+				@(posedge CLOCK_50);
+				@(posedge CLOCK_50);
+				@(posedge CLOCK_50);
+						      	@(posedge CLOCK_50);
+		reset <= 1;		      	@(posedge CLOCK_50);
+		reset <= 0;		      	@(posedge CLOCK_50);
+						      	@(posedge CLOCK_50);
+								@(posedge CLOCK_50);
+						      	@(posedge CLOCK_50);
+						      	@(posedge CLOCK_50);
+						      	@(posedge CLOCK_50);
+						      	@(posedge CLOCK_50);
+		for (i = 0; i < 1600; i++) begin
+								@(posedge CLOCK_50);
+		end
+						      	$stop;
+	end
+endmodule

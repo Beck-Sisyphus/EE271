@@ -1,0 +1,21 @@
+// First created in Lab4
+// To change the display in the seven segment display windows
+
+module seg7 (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, SW, LEDR);
+ 	output	[6:0]		HEX0, HEX1, HEX2, HEX3, HEX4, HEX5;
+	output	[9:0]		LEDR;
+	input 	[3:0] 	KEY;
+	input		[9:0]		SW;
+	
+	// Set default	values, turns off the HEX displays
+	assign HEX5 = 7'b1111111;
+   assign HEX4 = 7'b1111111;
+	assign HEX3 = 7'b0010010;
+	assign HEX2 = 7'b1000001;
+	assign HEX1 = 7'b1111001;
+	assign HEX0 = 7'b0000111;
+
+	// displays the item on the seven-segment displays
+	// seg7 (SW[3:0], HEX0, HEX1, HEX2, HEX3, HEX4, HEX5);
+	
+endmodule

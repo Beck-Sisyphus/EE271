@@ -1,0 +1,24 @@
+# Reading C:/altera/14.0/modelsim_ase/tcl/vsim/pref.tcl 
+do runlab.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# 
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux2_1
+# -- Compiling module mux2_1_testbench
+# 
+# Top level modules:
+# 	mux2_1_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux4_1
+# -- Compiling module mux4_1_testbench
+# 
+# Top level modules:
+# 	mux4_1_testbench
+# vsim -lib work -voptargs=\"+acc\" -t 1ps mux4_1_testbench 
+# Loading sv_std.std
+# Loading work.mux4_1_testbench
+# Loading work.mux4_1
+# Loading work.mux2_1
+# .main_pane.wave.interior.cs.body.pw.wf
+# .main_pane.structure.interior.cs.body.struct
+# .main_pane.objects.interior.cs.body.tree

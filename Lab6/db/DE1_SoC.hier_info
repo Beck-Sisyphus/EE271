@@ -1,0 +1,326 @@
+|DE1_SoC
+CLOCK_50 => CLOCK_50.IN2
+HEX0[0] << playTugOfWar:dut.display
+HEX0[1] << playTugOfWar:dut.display
+HEX0[2] << playTugOfWar:dut.display
+HEX0[3] << playTugOfWar:dut.display
+HEX0[4] << playTugOfWar:dut.display
+HEX0[5] << playTugOfWar:dut.display
+HEX0[6] << playTugOfWar:dut.display
+HEX1[0] << <VCC>
+HEX1[1] << <VCC>
+HEX1[2] << <VCC>
+HEX1[3] << <VCC>
+HEX1[4] << <VCC>
+HEX1[5] << <VCC>
+HEX1[6] << <VCC>
+HEX2[0] << <VCC>
+HEX2[1] << <VCC>
+HEX2[2] << <VCC>
+HEX2[3] << <VCC>
+HEX2[4] << <VCC>
+HEX2[5] << <VCC>
+HEX2[6] << <VCC>
+HEX3[0] << <VCC>
+HEX3[1] << <VCC>
+HEX3[2] << <VCC>
+HEX3[3] << <VCC>
+HEX3[4] << <VCC>
+HEX3[5] << <VCC>
+HEX3[6] << <VCC>
+HEX4[0] << <VCC>
+HEX4[1] << <VCC>
+HEX4[2] << <VCC>
+HEX4[3] << <VCC>
+HEX4[4] << <VCC>
+HEX4[5] << <VCC>
+HEX4[6] << <VCC>
+HEX5[0] << <VCC>
+HEX5[1] << <VCC>
+HEX5[2] << <VCC>
+HEX5[3] << <VCC>
+HEX5[4] << <VCC>
+HEX5[5] << <VCC>
+HEX5[6] << <VCC>
+KEY[0] => KEY[0].IN1
+KEY[1] => ~NO_FANOUT~
+KEY[2] => ~NO_FANOUT~
+KEY[3] => KEY[3].IN1
+LEDR[0] << <GND>
+LEDR[1] << playTugOfWar:dut.LEDR
+LEDR[2] << playTugOfWar:dut.LEDR
+LEDR[3] << playTugOfWar:dut.LEDR
+LEDR[4] << playTugOfWar:dut.LEDR
+LEDR[5] << playTugOfWar:dut.LEDR
+LEDR[6] << playTugOfWar:dut.LEDR
+LEDR[7] << playTugOfWar:dut.LEDR
+LEDR[8] << playTugOfWar:dut.LEDR
+LEDR[9] << playTugOfWar:dut.LEDR
+SW[0] => ~NO_FANOUT~
+SW[1] => ~NO_FANOUT~
+SW[2] => ~NO_FANOUT~
+SW[3] => ~NO_FANOUT~
+SW[4] => ~NO_FANOUT~
+SW[5] => ~NO_FANOUT~
+SW[6] => ~NO_FANOUT~
+SW[7] => ~NO_FANOUT~
+SW[8] => ~NO_FANOUT~
+SW[9] => SW[9].IN2
+
+
+|DE1_SoC|userInput:button
+clk => button:Left.clk
+clk => button:Right.clk
+reset => button:Left.reset
+reset => button:Right.reset
+leftButton => button:Left.button
+rightButton => button:Right.button
+L <= button:Left.out
+R <= button:Right.out
+
+
+|DE1_SoC|userInput:button|button:Left
+clk => oldButton.CLK
+clk => out~reg0.CLK
+reset => out.OUTPUTSELECT
+reset => oldButton.OUTPUTSELECT
+button => always0.IN1
+button => always0.IN1
+button => oldButton.DATAA
+out <= out~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|DE1_SoC|userInput:button|button:Right
+clk => oldButton.CLK
+clk => out~reg0.CLK
+reset => out.OUTPUTSELECT
+reset => oldButton.OUTPUTSELECT
+button => always0.IN1
+button => always0.IN1
+button => oldButton.DATAA
+out <= out~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|DE1_SoC|playTugOfWar:dut
+clk => normalLight:light9.clk
+clk => normalLight:light8.clk
+clk => normalLight:light7.clk
+clk => normalLight:light6.clk
+clk => centerLight:center.clk
+clk => normalLight:light4.clk
+clk => normalLight:light3.clk
+clk => normalLight:light2.clk
+clk => normalLight:light1.clk
+clk => victory:dut.clk
+reset => normalLight:light9.reset
+reset => normalLight:light8.reset
+reset => normalLight:light7.reset
+reset => normalLight:light6.reset
+reset => centerLight:center.reset
+reset => normalLight:light4.reset
+reset => normalLight:light3.reset
+reset => normalLight:light2.reset
+reset => normalLight:light1.reset
+reset => victory:dut.reset
+L => normalLight:light9.L
+L => normalLight:light8.L
+L => normalLight:light7.L
+L => normalLight:light6.L
+L => centerLight:center.L
+L => normalLight:light4.L
+L => normalLight:light3.L
+L => normalLight:light2.L
+L => normalLight:light1.L
+L => victory:dut.L
+R => normalLight:light9.R
+R => normalLight:light8.R
+R => normalLight:light7.R
+R => normalLight:light6.R
+R => centerLight:center.R
+R => normalLight:light4.R
+R => normalLight:light3.R
+R => normalLight:light2.R
+R => normalLight:light1.R
+R => victory:dut.R
+LEDR[0] <= normalLight:light1.lightOn
+LEDR[1] <= normalLight:light2.lightOn
+LEDR[2] <= normalLight:light3.lightOn
+LEDR[3] <= normalLight:light4.lightOn
+LEDR[4] <= centerLight:center.lightOn
+LEDR[5] <= normalLight:light6.lightOn
+LEDR[6] <= normalLight:light7.lightOn
+LEDR[7] <= normalLight:light8.lightOn
+LEDR[8] <= normalLight:light9.lightOn
+display[0] <= victory:dut.display[0]
+display[1] <= victory:dut.display[1]
+display[2] <= victory:dut.display[2]
+display[3] <= victory:dut.display[3]
+display[4] <= victory:dut.display[4]
+display[5] <= victory:dut.display[5]
+display[6] <= victory:dut.display[6]
+
+
+|DE1_SoC|playTugOfWar:dut|normalLight:light9
+clk => lightOn~reg0.CLK
+reset => lightOn.OUTPUTSELECT
+L => always0.IN0
+L => always0.IN0
+L => always0.IN1
+L => always0.IN0
+R => always0.IN1
+R => always0.IN0
+R => always0.IN1
+R => always0.IN1
+NL => always0.IN1
+NR => always0.IN1
+lightOn <= lightOn~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|DE1_SoC|playTugOfWar:dut|normalLight:light8
+clk => lightOn~reg0.CLK
+reset => lightOn.OUTPUTSELECT
+L => always0.IN0
+L => always0.IN0
+L => always0.IN1
+L => always0.IN0
+R => always0.IN1
+R => always0.IN0
+R => always0.IN1
+R => always0.IN1
+NL => always0.IN1
+NR => always0.IN1
+lightOn <= lightOn~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|DE1_SoC|playTugOfWar:dut|normalLight:light7
+clk => lightOn~reg0.CLK
+reset => lightOn.OUTPUTSELECT
+L => always0.IN0
+L => always0.IN0
+L => always0.IN1
+L => always0.IN0
+R => always0.IN1
+R => always0.IN0
+R => always0.IN1
+R => always0.IN1
+NL => always0.IN1
+NR => always0.IN1
+lightOn <= lightOn~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|DE1_SoC|playTugOfWar:dut|normalLight:light6
+clk => lightOn~reg0.CLK
+reset => lightOn.OUTPUTSELECT
+L => always0.IN0
+L => always0.IN0
+L => always0.IN1
+L => always0.IN0
+R => always0.IN1
+R => always0.IN0
+R => always0.IN1
+R => always0.IN1
+NL => always0.IN1
+NR => always0.IN1
+lightOn <= lightOn~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|DE1_SoC|playTugOfWar:dut|centerLight:center
+clk => lightOn~reg0.CLK
+reset => lightOn.OUTPUTSELECT
+L => always0.IN0
+L => always0.IN0
+L => always0.IN1
+L => always0.IN0
+R => always0.IN1
+R => always0.IN0
+R => always0.IN1
+R => always0.IN1
+NL => always0.IN1
+NR => always0.IN1
+lightOn <= lightOn~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|DE1_SoC|playTugOfWar:dut|normalLight:light4
+clk => lightOn~reg0.CLK
+reset => lightOn.OUTPUTSELECT
+L => always0.IN0
+L => always0.IN0
+L => always0.IN1
+L => always0.IN0
+R => always0.IN1
+R => always0.IN0
+R => always0.IN1
+R => always0.IN1
+NL => always0.IN1
+NR => always0.IN1
+lightOn <= lightOn~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|DE1_SoC|playTugOfWar:dut|normalLight:light3
+clk => lightOn~reg0.CLK
+reset => lightOn.OUTPUTSELECT
+L => always0.IN0
+L => always0.IN0
+L => always0.IN1
+L => always0.IN0
+R => always0.IN1
+R => always0.IN0
+R => always0.IN1
+R => always0.IN1
+NL => always0.IN1
+NR => always0.IN1
+lightOn <= lightOn~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|DE1_SoC|playTugOfWar:dut|normalLight:light2
+clk => lightOn~reg0.CLK
+reset => lightOn.OUTPUTSELECT
+L => always0.IN0
+L => always0.IN0
+L => always0.IN1
+L => always0.IN0
+R => always0.IN1
+R => always0.IN0
+R => always0.IN1
+R => always0.IN1
+NL => always0.IN1
+NR => always0.IN1
+lightOn <= lightOn~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|DE1_SoC|playTugOfWar:dut|normalLight:light1
+clk => lightOn~reg0.CLK
+reset => lightOn.OUTPUTSELECT
+L => always0.IN0
+L => always0.IN0
+L => always0.IN1
+L => always0.IN0
+R => always0.IN1
+R => always0.IN0
+R => always0.IN1
+R => always0.IN1
+NL => always0.IN1
+NR => always0.IN1
+lightOn <= lightOn~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|DE1_SoC|playTugOfWar:dut|victory:dut
+clk => ps~1.DATAIN
+reset => ps.OUTPUTSELECT
+reset => ps.OUTPUTSELECT
+reset => ps.OUTPUTSELECT
+leftest => always0.IN0
+L => always0.IN1
+L => always0.IN1
+rightest => always0.IN0
+R => always0.IN1
+R => always0.IN1
+display[0] <= Selector7.DB_MAX_OUTPUT_PORT_TYPE
+display[1] <= Selector6.DB_MAX_OUTPUT_PORT_TYPE
+display[2] <= Selector5.DB_MAX_OUTPUT_PORT_TYPE
+display[3] <= Selector4.DB_MAX_OUTPUT_PORT_TYPE
+display[4] <= Selector3.DB_MAX_OUTPUT_PORT_TYPE
+display[5] <= <VCC>
+display[6] <= Selector2.DB_MAX_OUTPUT_PORT_TYPE
+
+
